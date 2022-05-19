@@ -22,7 +22,7 @@ const PetSchema = new mongoose.Schema(
 		},
 		skill1: {
 			type: String,
-			// minlength: [ 3, 'Skill must be at least 3 characters' ],
+			minlength: [ 3, 'Skill must be at least 3 characters' ],
 		},
 		skill2: {
 			type: String,

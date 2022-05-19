@@ -44,12 +44,20 @@ module.exports.deletePet = ( request, response ) => {
 		.catch( err => response.status( 400 ).json( err ) );
 }
 
-// Export updatePet method
+// Export updatePet method with validations
 module.exports.updatePet = ( request, response ) => {
-	Pet.findByIdAndUpdate( request.params.id, request.body, { new: true } )
+	Pet.findByIdAndUpdate( request.params.id, request.body, { new: true, runValidators:true } )
 		.then( pet => response.json( pet ) )
 		.catch( err => response.status( 400 ).json( err ) );
 }
+
+
+
+// module.exports.updatePet = ( request, response ) => {
+// 	Pet.findByIdAndUpdate( request.params.id, request.body, { new: true } )
+// 		.then( pet => response.json( pet ) )
+// 		.catch( err => response.status( 400 ).json( err ) );
+// }
 
 // Export likePet method
 module.exports.likePet = ( request, response ) => {

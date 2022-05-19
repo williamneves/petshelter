@@ -40,6 +40,14 @@ const EditPet = () => {
 		e.preventDefault();
 		setLoading(true);
 		// post the pet to the database
+		
+		// check if name is empty
+		// if ( pet.name === '' ) {
+		// 	setValErrors( { name: 'Name is required' } );
+		// 	setLoading( false );
+		// 	return;
+		// }
+
 		axios
 			.put(`http://localhost:8000/api/pet/${id}`, pet)
 			.then((response) => {
@@ -67,6 +75,7 @@ const EditPet = () => {
 								{/* Pet Name */}
 								<MDBInput
 									name='name'
+									// required
 									label='Name'
 									id='name'
 									type='text'

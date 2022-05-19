@@ -41,19 +41,40 @@ const Index = () => {
 							<th scope='col'>#</th>
 							<th scope='col'>Name</th>
 							<th scope='col'>Type</th>
+							<th scope='col'>Likes</th>
 							<th scope='col'>Actions</th>
 						</tr>
 					</MDBTableHead>
 					<MDBTableBody>
 						{
-							// Show the pets list order by type
+							// Show the pets list order by type and name
 							pets
-								.sort((a, b) => a.type.localeCompare(b.type))
+                  .sort( ( a, b ) => {
+                    if ( a.type < b.type ) {
+                      return -1;
+                    }
+                    if ( a.type > b.type ) {
+                      return 1;
+                    }
+                    if ( a.name < b.name ) {
+                      return -1;
+                    }
+                    if ( a.name > b.name ) {
+                      return 1;
+                    }
+                    return 0;
+                  } )
 								.map((pet, index) => (
 									<tr key={index}>
 										<th scope='row'>{index + 1}</th>
 										<td>{pet.name}</td>
-										<td>{pet.type}</td>
+                    <td>{ pet.type }</td>
+                    <td>
+                      <span className="text-primary">
+                        <MDBIcon icon='heart' className='me-2'/>
+                        { pet.likes }
+                      </span>
+                    </td>
 										<td>
 											<button
 												className='btn btn-primary shadow-1 me-2'

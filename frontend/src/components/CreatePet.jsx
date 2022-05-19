@@ -13,20 +13,44 @@ import {
 } from 'mdb-react-ui-kit';
 
 const CreatePet = () => {
-	const [pet, setPet] = useState('');
+	// const [pet, setPet] = useState('');
+  const[ pet, setPet ] = useState( {
+    name: '',
+    type: '',
+    description: '',
+    skill1: '',
+    skill2: '',
+    skill3: '',
+  } );
 	const [valErrors, setValErrors] = useState(false);
 	const [loading, setLoading] = useState(false);
 
 	// use navigate to redirect to index page
-	const navigate = useNavigate();
-
+  const navigate = useNavigate();
+  
+  // create a new pet object just with the not empty fields
+  
 	// Handle the submit event
 	const handleSubmit = (e) => {
-		e.preventDefault();
-		setLoading(true);
+    e.preventDefault();
+    setLoading( true );
+    // change the object and just sent the keys are not ''
+
+		if ( pet.name === '' ) {
+			setValErrors( { name: 'Name is required' } );
+			setLoading( false );
+			return;
+		}
+    
+    const petObj = {};
+    for ( let key in pet ) {
+      if ( pet[ key ] !== '' ) {
+        petObj[ key ] = pet[ key ];
+      }
+    }
 		// post the pet to the database
 		axios
-			.post('http://localhost:8000/api/pet', pet)
+			.post('http://localhost:8000/api/pet', petObj)
 			.then((response) => {
 				navigate('/');
 			})
@@ -53,9 +77,10 @@ const CreatePet = () => {
 								<MDBInput
 									name='name'
 									label='Name'
+									required
 									id='name'
 									type='text'
-									value={pet && pet.name}
+									value={pet.name}	
 									onChange={(e) => setPet({ ...pet, name: e.target.value })}
 								/>
 								<div className='mb-2' style={{ minHeight: '22px' }}>
@@ -88,7 +113,7 @@ const CreatePet = () => {
 									label='Description'
 									id='description'
 									type='text'
-									value={pet && pet.description}
+									value={pet.description}
 									onChange={(e) => setPet({ ...pet, description: e.target.value })}
 								/>
 								<div className='mb-2' style={{ minHeight: '22px' }}>
@@ -108,7 +133,7 @@ const CreatePet = () => {
 									label='Skill 1'
 									id='skill1'
 									type='text'
-									value={pet && pet.skill1}
+									value={pet.skill1}
 									onChange={(e) => setPet({ ...pet, skill1: e.target.value })}
 								/>
 								<div className='mb-2' style={{ minHeight: '22px' }}>
@@ -124,7 +149,7 @@ const CreatePet = () => {
 									label='Skill 2'
 									id='skill2'
 									type='text'
-									value={pet && pet.skill2}
+									value={pet.skill2}
 									onChange={(e) => setPet({ ...pet, skill2: e.target.value })}
 								/>
 								<div className='mb-2' style={{ minHeight: '22px' }}>
@@ -140,7 +165,7 @@ const CreatePet = () => {
 									label='Skill 3'
 									id='skill3'
 									type='text'
-									value={pet && pet.skill3}
+									value={pet.skill3}
 									onChange={(e) => setPet({ ...pet, skill3: e.target.value })}
 								/>
 								<div className='mb-2' style={{ minHeight: '22px' }}>
