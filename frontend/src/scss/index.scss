@@ -1,0 +1,32 @@
+@import '../../node_modules/mdb-react-ui-kit/dist/scss/mdb.pro.scss';
+
+$my-theme-primary-light: #3476ad;
+$my-theme-secondary-light: #eb5d47;
+
+$my-theme: mdb-light-theme($my-theme-primary-light, $my-theme-secondary-light);
+
+$my-theme-primary-dark: #EF7E6C;
+$my-theme-secondary-dark: #72a8d5;
+
+$dark-theme: mdb-dark-theme($my-theme-primary-dark, $my-theme-secondary-dark);
+
+@include mdb-theme($my-theme);
+
+// include theme styles
+.dark-skin {
+  @include mdb-theme($dark-theme);
+}
+
+.light-skin {
+  @include mdb-theme($my-theme);
+}
+// @import './mdb.pro.scss';
+
+// $my-theme-primary: #9c27b0; // theme primary color, change this value to customize theme
+// $my-theme-secondary: #69f0ae; // theme secondary color, change this value to customize theme
+
+// $my-theme: mdb-light-theme($my-theme-primary, $my-theme-secondary); // create the new theme using primary and
+
+
+// // include theme styles
+// @include mdb-theme($my-theme);
