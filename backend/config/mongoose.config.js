@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 // set a database name
-const dbName = 'mern-app';
+const dbName = 'petshelter-app';
 
 // connect to mongoose
 mongoose

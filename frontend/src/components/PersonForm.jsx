@@ -4,7 +4,9 @@ import { MDBInput, MDBBtn, MDBCol } from 'mdb-react-ui-kit';
 export default () => {
 	//keep track of what is being typed via useState hook
 	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
+	const [ lastName, setLastName ] = useState( '' );
+	const [ loading, setLoading ] = useState( false );
+	const [ valErros, setValErrors ] = useState( '' );
 	//handler when the form is submitted
 	const onSubmitHandler = (e) => {
 		//prevent default behavior of the submit

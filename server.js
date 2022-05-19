@@ -9,7 +9,7 @@ const cors = require( 'cors' );
 const app = express();
 
 // require mongoose config
-require('./server/config/mongoose.config');
+require('./backend/config/mongoose.config');
 
 // use cors
 app.use(cors());
@@ -25,7 +25,7 @@ const port = 8000;
 
 // require routes
 // Add routes here
-require( './server/routes/person.routes' )( app );
+require( './backend/routes/pet.routes' )( app );
 
 // app listen on port
 app.listen(port, () => {

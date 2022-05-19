@@ -13,11 +13,14 @@ import {
 } from 'mdb-react-ui-kit';
 import MyContext from '../context/MyContext';
 import SwitchTheme from './common/SwitchTheme';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function ({ title }) {
 	const [showNavColor, setShowNavColor] = useState(false);
 	// import context
-	const { setThemeColor, setBgcolor, themeColor, bgcolor } = useContext(MyContext);
+	const { setThemeColor, setBgcolor, themeColor, bgcolor } = useContext( MyContext );
+	const navigate = useNavigate();
 
 	// set session with themeColor and bgcolor first time
 	useEffect(() => {
@@ -58,7 +61,9 @@ export default function ({ title }) {
 		<React.Fragment>
 			<MDBNavbar expand='lg' light className='border-bottom border-2 shadow-1 mb-3'>
 				<MDBContainer breakpoint='md'>
-					<MDBNavbarBrand href='#'>{title}</MDBNavbarBrand>
+					<Link to="/">
+						<MDBNavbarBrand tag='span'>{title}</MDBNavbarBrand>
+					</Link>
 					<MDBNavbarToggler
 						type='button'
 						data-target='#navbarApp'
@@ -71,18 +76,18 @@ export default function ({ title }) {
 					<MDBCollapse show={showNavColor} navbar>
 						<MDBNavbarNav className='me-auto mb-2 mb-lg-0'>
 							<MDBNavbarItem className='active'>
-								<MDBNavbarLink aria-current='page' href='#'>
-									Home
-								</MDBNavbarLink>
+								<Link to="/">
+									<MDBNavbarLink aria-current='page' tag='span'>
+										Home
+									</MDBNavbarLink>
+								</Link>
 							</MDBNavbarItem>
-							<MDBNavbarItem>
-								<MDBNavbarLink href='#'>Features</MDBNavbarLink>
-							</MDBNavbarItem>
-							<MDBNavbarItem>
-								<MDBNavbarLink href='#'>Pricing</MDBNavbarLink>
-							</MDBNavbarItem>
-							<MDBNavbarItem>
-								<MDBNavbarLink href='#'>About</MDBNavbarLink>
+							<MDBNavbarItem className='active'>
+								<Link to="/pet/new">
+									<MDBNavbarLink aria-current='page' tag='span'>
+										Add Pet
+									</MDBNavbarLink>
+								</Link>
 							</MDBNavbarItem>
 						</MDBNavbarNav>
 						<SwitchTheme themeColor={themeColor} handleChangeThemeColor={handleChangeThemeColor} />
